@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Per Administrasian</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+
+body{
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:#fff;
+}
+
+/* LOGIN */
+#login, #menu{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:999;
+}
+
+#menu{display:none;}
+
+input{
+  padding:12px;
+  border:none;
+  border-radius:25px;
+  outline:none;
+  text-align:center;
+}
+
+button{
+  margin-top:15px;
+  padding:10px 25px;
+  border:none;
+  border-radius:25px;
+  background:#00c6ff;
+  color:#fff;
+  cursor:pointer;
+}
+
+.pilih{
+  display:flex;
+  gap:20px;
+}
+
+.pilih button{
+  background:linear-gradient(45deg,#00c6ff,#0072ff);
+}
+
+/* HALAMAN */
+.section{display:none;}
+
+.active{display:block;}
+
+header{
+  text-align:center;
+  padding:40px 20px;
+}
+
+.container{
+  padding:30px;
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  background: rgba(255,255,255,0.05);
+  border-radius:20px;
+  padding:25px;
+  backdrop-filter: blur(10px);
+  transition:0.3s;
+}
+
+.card:hover{transform:translateY(-8px);}
+
+.btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 20px;
+  border-radius:30px;
+  background:linear-gradient(45deg,#00c6ff,#0072ff);
+  color:#fff;
+  text-decoration:none;
+}
+
+.kembali{
+  position:fixed;
+  top:15px;
+  left:15px;
+  background:red;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <h2>LOGIN</h2>
+  <input type="password" id="pass" placeholder="Masukkan Password">
+  <button onclick="cek()">Masuk</button>
+  <div id="notif"></div>
+</div>
+
+<!-- PILIH MENU -->
+<div id="menu">
+  <h2>Pilih Akses</h2>
+  <div class="pilih">
+    <button onclick="buka('sekolah')">ADMINISTRASI SEKOLAH</button>
+    <button onclick="buka('pramuka')">ADMINISTRASI PRAMUKA</button>
+  </div>
+</div>
+
+<!-- ADMIN SEKOLAH -->
+<div id="sekolah" class="section">
+<button class="kembali" onclick="kembali()">←</button>
+
+<header>
+<h1>ADMINISTRASI SEKOLAH</h1>
+</header>
+
+<div class="container">
+<div class="card">
+<h3>📄 Surat Izin</h3>
+<a href="file/surat-izin.pdf" class="btn" download>Download</a>
+</div>
+
+<div class="card">
+<h3>📝 Proposal</h3>
+<a href="file/proposal.docx" class="btn" download>Download</a>
+</div>
+
+<div class="card">
+<h3>📊 Laporan</h3>
+<a href="file/laporan.docx" class="btn" download>Download</a>
+</div>
+</div>
+</div>
+
+<!-- PRAMUKA -->
+<div id="pramuka" class="section">
+<button class="kembali" onclick="kembali()">←</button>
+
+<header>
+<h1>ADMINISTRASI PRAMUKA</h1>
+<p style="margin-top:10px; opacity:0.8;">
+Kalau kamu sudah sampai di sini, berarti kamu adalah penggantiku.<br>
+Aku akan tetap membantumu.<br>
+Sampaikan salamku untuk semuanya.
+</p>
+</header>
+
+<div class="container">
+<div class="card">
+<h3>PORTOPOLIO PRAMUKA GARUDA</h3>
+<a href="portopolio.docx" class="btn" download>Download</a>
+</div>
+
+<div class="card">
+<h3>SURAT KEPERLUAN PRAMUKA</h3>
+<a href="SURAT  KEPERLUAN PRAMUKA.doc" class="btn" download>Download</a>
+</div>
+
+<div class="card">
+<h3>BUKU PANDUAN PESERTA KEMAH</h3>
+<a href="buku panduan.doc" class="btn" download>Download</a>
+</div>
+
+<div class="card">
+<h3>CARA MENJADI PRAMUKA GARUDA</h3>
+<a href="pedoman cpg.pdf" class="btn" download>Download</a>
+</div>
+
+<div class="card">
+  <h3>BIO PENILAIAN CALON PRAMUKA GARUDA</h3>
+  <a href="bio excel.xlsx" class="btn" download>
+    Download
+  </a>
+</div>
+</div>
+
+<script>
+function cek(){
+  var password = document.getElementById("pass").value;
+
+  if(password === "nesasin123"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("menu").style.display="flex";
+  }else{
+    document.getElementById("notif").innerText="Akses Ditolak ❌";
+  }
+}
+
+function buka(menu){
+  document.getElementById("menu").style.display="none";
+  document.getElementById(menu).classList.add("active");
+}
+
+function kembali(){
+  document.querySelectorAll(".section").forEach(e=>e.classList.remove("active"));
+  document.getElementById("menu").style.display="flex";
+}
+</script>
+
+</body>
+</html>
